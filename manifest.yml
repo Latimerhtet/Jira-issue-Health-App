@@ -1,0 +1,35 @@
+modules:
+  jira:issueGlance:
+    - key: issue-health-glance-hello-world-issue-glance
+      resource: main
+      resolver:
+        function: resolver
+      render: native
+      title: issue-health-glance
+      description: A hello world issue glance.
+      label: Hello World!
+  jira:adminPage:
+    - key: issue-glance-monitor-admin-page
+      resource: config
+      resolver:
+        function: resolver
+      render: native
+      title: issue-health-config
+      description: Issue Glance Configuration
+      label: Configuration
+  function:
+    - key: resolver
+      handler: index.handler
+resources:
+  - key: main
+    path: src/frontend/index.jsx
+  - key: config
+    path: src/frontend/config.jsx
+app:
+  runtime:
+    name: nodejs20.x
+  id: ari:cloud:ecosystem::app/97d46a17-e8ae-4b41-b3c4-5043347877bf
+permissions:
+  scopes:
+    - read:jira-work
+    - storage:app
